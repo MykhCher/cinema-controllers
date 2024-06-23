@@ -9,7 +9,6 @@ const PORT = 5000;
 const HOST_NAME = '127.0.0.1';
 const IS_SECURE = false;
 
-app.use(express.static(path.resolve('public')))
 
 const server = http.createServer(app);
 

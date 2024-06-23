@@ -1,0 +1,25 @@
+GET http://127.0.0.1:5000/directors/
+###
+GET http://127.0.0.1:5000/directors/1
+###
+POST http://127.0.0.1:5000/directors/
+Content-Type: application/json
+
+    {
+        "fullName" : "Michael Bay",
+        "birthYear": 1965,
+        "nationality": "USA"
+    }
+###
+PUT http://127.0.0.1:5000/directors/2
+Content-Type: application/json
+
+    {
+        "id": 2,
+        "fullName": "Christopher Nolan",
+        "birthYear": 1970,
+        "nationality": "United Kingdoms"
+    }
+###
+DELETE http://127.0.0.1:5000/directors/2
+###
