@@ -3,14 +3,15 @@ const path = require('path');
 // =====
 const express = require('express');
 // =====
-const DirectorController = require('./controllers/directorController');
-const StudioController = require('./controllers/studioController');
-const MoviesController = require('./controllers/moviesController');
+const movieRouter = require('./routes/movies');
+const studioRouter = require('./routes/studios');
+const directorRouter = require('./routes/directors');
 
 const app = express();
 
 app.use(express.json());
 app.use(express.static(path.resolve('public')));
+app.use(require('./logging'));
 
 app.get('/', (req, res) => {
     console.log(`${req.method} ${req.url}`);
@@ -24,23 +25,9 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/directors', DirectorController.getDirectors);
-app.get('/directors/:directorId', DirectorController.getDirectorById);
-app.post('/directors/', DirectorController.createDirector);
-app.put('/directors/:directorId', DirectorController.updateDirector);
-app.delete('/directors/:directorId', DirectorController.deleteDirector);
-
-app.get('/studios', StudioController.getStudios);
-app.get('/studios/:studioId', StudioController.getStudioById);
-app.post('/studios/', StudioController.createStudio);
-app.put('/studios/:studioId', StudioController.updateStudio);
-app.delete('/studios/:studioId', StudioController.deleteStudio);
-
-app.get('/movies', MoviesController.getMovies);
-app.get('/movies/:movieId', MoviesController.getMovieById);
-app.post('/movies/', MoviesController.createMovie);
-app.put('/movies/:movieId', MoviesController.updateMovie);
-app.delete('/movies/:movieId', MoviesController.deleteMovie);
+app.use('/directors', directorRouter);
+app.use('/studios', studioRouter);
+app.use('/movies', movieRouter);
 
 
 module.exports = app;
