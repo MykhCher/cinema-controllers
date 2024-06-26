@@ -1,6 +1,6 @@
 GET http://127.0.0.1:5000/directors/
 ###
-GET http://127.0.0.1:5000/directors/1
+GET http://127.0.0.1:5000/directors/3
 ###
 POST http://127.0.0.1:5000/directors/
 Content-Type: application/json
