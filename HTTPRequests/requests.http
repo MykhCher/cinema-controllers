@@ -48,3 +48,31 @@ Content-Type: application/json
 ###
 DELETE http://127.0.0.1:5000/studios/2
 ###
+###
+# Movie requests
+###
+GET http://127.0.0.1:5000/movies/
+###
+GET http://127.0.0.1:5000/movies/1
+###
+POST http://127.0.0.1:5000/movies/
+Content-Type: application/json
+
+    {
+        "title" : "Blade Runner",
+        "directorId": 0,
+        "studioId": 0
+    }
+###
+PUT http://127.0.0.1:5000/movies/1
+Content-Type: application/json
+
+    {
+        "id": 1,
+        "title": "Star Wars: The Rogue One",
+        "directorId": 1,
+        "studioId": 1
+    }
+###
+DELETE http://127.0.0.1:5000/movies/1
+###
