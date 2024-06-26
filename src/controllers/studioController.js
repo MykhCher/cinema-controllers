@@ -22,7 +22,8 @@ class StudioController {
     }
     getStudioById(req, res) {
         const [studio] = studios.filter((studio) => studio.id === Number(req.params.studioId));
-        res.status(200).send(studio);
+        res.status(studio ? 200 : 404)
+            .send(studio || `studio id ${req.params.studioId} was not found!`);
     }
     createStudio(req, res) {
         const newStudio = req.body;
@@ -31,10 +32,19 @@ class StudioController {
     }
     updateStudio(req, res) {
         const {params: {studioId}, body} = req;
+        const [studioToDelete] = studios.filter((stud) => stud.id === Number(studioId));
+        if (!studioToDelete) {
+            return res.status(404).send(`studio id ${studioId} was not found!`)
+        }
         studios = studios.map((studio) => studio.id === Number(studioId) ? {...body} : studio);
         res.status(202).send(body);
     }
     deleteStudio(req, res) {
+        const id = req.params.studioId;
+        const [studioToDelete] = studios.filter((stud) => stud.id === Number(id));
+        if (!studioToDelete) {
+            return res.status(404).send(`studio id ${id} was not found!`)
+        }
         studios = studios.filter((studio) => studio.id !== Number(req.params.studioId));
         res.status(200).send(`studio id ${req.params.studioId} deleted!`);
     }
