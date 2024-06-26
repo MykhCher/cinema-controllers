@@ -23,3 +23,28 @@ Content-Type: application/json
 ###
 DELETE http://127.0.0.1:5000/directors/2
 ###
+# Studio requests
+###
+GET http://127.0.0.1:5000/studios/
+###
+GET http://127.0.0.1:5000/studios/1
+###
+POST http://127.0.0.1:5000/studios/
+Content-Type: application/json
+
+    {
+        "title" : "Disney",
+        "location": "Washington"
+    }
+###
+PUT http://127.0.0.1:5000/studios/2
+Content-Type: application/json
+
+    {
+        "id": 2,
+        "title": "Pinewood Studios",
+        "location": "London"
+    }
+###
+DELETE http://127.0.0.1:5000/studios/2
+###

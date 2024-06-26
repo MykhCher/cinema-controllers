@@ -10,6 +10,13 @@ const {
     updateDirector, 
     deleteDirector 
 } = require('./controllers/directorController');
+const {
+    getStudios, 
+    getStudioById, 
+    createStudio, 
+    updateStudio, 
+    deleteStudio 
+} = require('./controllers/studioController');
 
 const app = express();
 
@@ -33,5 +40,12 @@ app.get('/directors/:directorId', getDirectorById);
 app.post('/directors/', createDirector);
 app.put('/directors/:directorId', updateDirector);
 app.delete('/directors/:directorId', deleteDirector);
+
+app.get('/studios', getStudios);
+app.get('/studios/:studioId', getStudioById);
+app.post('/studios/', createStudio);
+app.put('/studios/:studioId', updateStudio);
+app.delete('/studios/:studioId', deleteStudio);
+
 
 module.exports = app;
