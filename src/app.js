@@ -3,27 +3,9 @@ const path = require('path');
 // =====
 const express = require('express');
 // =====
-const {
-    getDirectors, 
-    getDirectorById, 
-    createDirector, 
-    updateDirector, 
-    deleteDirector 
-} = require('./controllers/directorController');
-const {
-    getStudios, 
-    getStudioById, 
-    createStudio, 
-    updateStudio, 
-    deleteStudio 
-} = require('./controllers/studioController');
-const {
-    getMovies, 
-    getMovieById, 
-    createMovie, 
-    updateMovie, 
-    deleteMovie 
-} = require('./controllers/moviesController');
+const DirectorController = require('./controllers/directorController');
+const StudioController = require('./controllers/studioController');
+const MoviesController = require('./controllers/moviesController');
 
 const app = express();
 
@@ -42,23 +24,23 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/directors', getDirectors);
-app.get('/directors/:directorId', getDirectorById);
-app.post('/directors/', createDirector);
-app.put('/directors/:directorId', updateDirector);
-app.delete('/directors/:directorId', deleteDirector);
+app.get('/directors', DirectorController.getDirectors);
+app.get('/directors/:directorId', DirectorController.getDirectorById);
+app.post('/directors/', DirectorController.createDirector);
+app.put('/directors/:directorId', DirectorController.updateDirector);
+app.delete('/directors/:directorId', DirectorController.deleteDirector);
 
-app.get('/studios', getStudios);
-app.get('/studios/:studioId', getStudioById);
-app.post('/studios/', createStudio);
-app.put('/studios/:studioId', updateStudio);
-app.delete('/studios/:studioId', deleteStudio);
+app.get('/studios', StudioController.getStudios);
+app.get('/studios/:studioId', StudioController.getStudioById);
+app.post('/studios/', StudioController.createStudio);
+app.put('/studios/:studioId', StudioController.updateStudio);
+app.delete('/studios/:studioId', StudioController.deleteStudio);
 
-app.get('/movies', getMovies);
-app.get('/movies/:movieId', getMovieById);
-app.post('/movies/', createMovie);
-app.put('/movies/:movieId', updateMovie);
-app.delete('/movies/:movieId', deleteMovie);
+app.get('/movies', MoviesController.getMovies);
+app.get('/movies/:movieId', MoviesController.getMovieById);
+app.post('/movies/', MoviesController.createMovie);
+app.put('/movies/:movieId', MoviesController.updateMovie);
+app.delete('/movies/:movieId', MoviesController.deleteMovie);
 
 
 module.exports = app;
