@@ -1,4 +1,4 @@
-var directors = [
+let directors = [
     {
         id: 1,
         fullName: 'George Lucas',
@@ -30,7 +30,7 @@ class DirectorController {
     }
     createDirector(req, res) {
         const newDirector = req.body;
-        directors.push({...newDirector});
+        directors.push(newDirector);
         res.status(201).send(newDirector);
     }
     updateDirector(req, res) {

@@ -1,4 +1,4 @@
-var studios = [
+let studios = [
     {
         id: 1,
         title: 'Lucasfilm',
@@ -27,7 +27,7 @@ class StudioController {
     }
     createStudio(req, res) {
         const newStudio = req.body;
-        studios.push({...newStudio});
+        studios.push(newStudio);
         res.status(201).send(newStudio);
     }
     updateStudio(req, res) {

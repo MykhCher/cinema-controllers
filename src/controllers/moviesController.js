@@ -1,4 +1,4 @@
-var movies = [
+let movies = [
     {
         id: 1,
         title: 'Star Wars: Revenge of the Sith',
@@ -30,7 +30,7 @@ class MoviesController {
     }
     createMovie(req, res) {
         const newMovie = req.body;
-        movies.push({...newMovie});
+        movies.push(newMovie);
         res.status(201).send(newMovie);
     }
     updateMovie(req, res) {
