@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
     const curDatetime = `${date.getDate()}/${month}/${date.getFullYear()} ${hours}:${minutes}:${seconds}`
     res.on('finish', () => {
         const code = res.statusCode < 399 ? chalk.green(res.statusCode) : chalk.red(res.statusCode);
-        console.log(`${chalk.blue(curDatetime)} => ${req.method} ${code} ${req.baseUrl}${req.url}`);
+        console.log(`${chalk.blue(curDatetime)} => ${req.method} ${code} ${req.baseUrl || ''}${req.url}`);
       })
     next();
 }

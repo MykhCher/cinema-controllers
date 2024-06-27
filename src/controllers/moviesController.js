@@ -2,19 +2,19 @@ var movies = [
     {
         id: 1,
         title: 'Star Wars: Revenge of the Sith',
-        movectorId: 1,
+        directorId: 1,
         studioId: 1,
     },
     {
         id: 2,
         title: 'Lord of the Rings: The Return of the King',
-        movectorId: 2,
+        directorId: 2,
         studioId: 2,
     },
     {
         id: 3,
         title: 'Pulp Fiction',
-        movectorId: 3,
+        directorId: 3,
         studioId: 3,
     }
 ];
