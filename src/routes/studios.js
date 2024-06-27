@@ -4,10 +4,13 @@ const StudioController = require('../controllers/studioController');
 
 const router = express.Router()
 
-router.get('/', StudioController.getStudios);
-router.get('/:studioId', StudioController.getStudioById);
-router.post('/', StudioController.createStudio);
-router.put('/:studioId', StudioController.updateStudio);
-router.delete('/:studioId', StudioController.deleteStudio);
+router.route('/')
+    .get(StudioController.getStudios)
+    .post(StudioController.createStudio);
+
+router.route('/:studioId')
+    .get(StudioController.getStudioById)
+    .put(StudioController.updateStudio)
+    .delete(StudioController.deleteStudio);
 
 module.exports = router;
