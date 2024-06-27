@@ -9,13 +9,11 @@ const directorRouter = require('./routes/directors');
 
 const app = express();
 
+app.use(require('./logging'));
 app.use(express.json());
 app.use(express.static(path.resolve('public')));
-app.use(require('./logging'));
 
 app.get('/', (req, res) => {
-    console.log(`${req.method} ${req.url}`);
-
     fs.readFile(path.resolve('public', 'home.html'), (err, data) => {
         if (err) {
             res.status(404);
