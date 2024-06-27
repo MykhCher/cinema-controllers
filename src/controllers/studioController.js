@@ -47,12 +47,15 @@ class StudioController {
     }
     deleteStudio(req, res) {
         const id = req.params.studioId;
-        const [studioToDelete] = studios.filter((stud) => stud.id === Number(id));
-        if (!studioToDelete) {
-            return res.status(404).send(`studio id ${id} was not found!`)
-        }
-        studios = studios.filter((studio) => studio.id !== Number(req.params.studioId));
-        res.status(200).send(`studio id ${req.params.studioId} deleted!`);
+        let isDeleted = false;
+        
+        studios = studios.filter((studio) => {
+            const match = studio.id !== Number(id);
+            if (!match) isDeleted = true;
+            return match;
+        });
+        res.status(isDeleted ? 200 : 404)
+            .send(isDeleted ? `studio id ${id} deleted!` : `studio id ${id} was not found!`);
     }
 }
 
