@@ -35,12 +35,18 @@ class MoviesController {
     }
     updateMovie(req, res) {
         const {params: {movieId}, body} = req;
-        const [movieToUpdate] = movies.filter((mov) => mov.id === Number(movieId));
-        if (!movieToUpdate) {
-            return res.status(404).send(`movie id ${movieId} was not found!`)
-        }
-        movies = movies.map((movie) => movie.id === Number(movieId) ? {...body} : movie);
-        res.status(202).send(body);
+        let isUpdated = false;
+        
+        movies = movies.map((movie) => {
+            if(movie.id === Number(movieId)) { 
+                isUpdated = true;
+                return body;
+            } else { 
+                return movie;
+            }
+        });
+        res.status(isUpdated ? 202 : 404)
+            .send(isUpdated ? body : `movie id ${movieId} was not found!`);
     }
     deleteMovie(req, res) {
         const id = req.params.movieId;

@@ -35,12 +35,18 @@ class DirectorController {
     }
     updateDirector(req, res) {
         const {params: {directorId}, body} = req;
-        const [directorToUpdate] = directors.filter((dir) => dir.id === Number(directorId));
-        if (!directorToUpdate) {
-            return res.status(404).send(`director id ${directorId} was not found!`)
-        }
-        directors = directors.map((director) => director.id === Number(directorId) ? {...body} : director);
-        res.status(202).send(body);
+        let isUpdated = false;
+        
+        directors = directors.map((director) => {
+            if(director.id === Number(directorId)) { 
+                isUpdated = true;
+                return body;
+            } else { 
+                return director;
+            }
+        });
+        res.status(isUpdated ? 202 : 404)
+            .send(isUpdated ? body : `director id ${directorId} was not found!`);
     }
     deleteDirector(req, res) {
         const id = req.params.directorId;
